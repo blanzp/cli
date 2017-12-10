@@ -5,7 +5,10 @@
   "main": "cli.js",
   "dependencies": {
     "request": "^2.83.0",
-    "vorpal": "^1.12.0"
+    "vorpal": "^1.12.0",
+    "vorpal-grep": "^0.2.0",
+    "vorpal-log": "^1.1.0",
+    "vorpal-tour": "0.0.5"
   },
   "devDependencies": {},
   "scripts": {
