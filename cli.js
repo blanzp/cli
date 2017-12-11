@@ -4,6 +4,7 @@ var request = require('request');
 const grep = require('vorpal-grep');
 const vorpalLog = require('vorpal-log');
 const vorpalTour = require('vorpal-tour');
+var table = require('text-table');
 
 var chalk = vorpal.chalk;
 
@@ -17,6 +18,9 @@ const logger = vorpal.logger;
 
 let user = '';
 let password = '';
+
+// commands: chstatus, mqstatus, amqerror, secexit
+// webview, inventory, mqcache, itsm, hpsm, plm, planum, rosetta
 
 // vorpal.use(vorpalTour, {
 //     command: 'tour',
@@ -93,10 +97,12 @@ vorpal
 .action(function (args, callback) {
     const self = this;
     request('https://jsonplaceholder.typicode.com/posts', function (error, response, body) {
+        t = [['id','title','body']];
         if (!error && response.statusCode == 200) {
-            JSON.parse(body).forEach( element =>
-                { self.log(element['title']); }
+            JSON.parse(body).forEach( element =>{ 
+                    t.push([element['id'],element['title'],element['body']]); }
             )
+            self.log(table(t));
         }
       });
   callback();
