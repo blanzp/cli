@@ -77,6 +77,7 @@ vorpal
 vorpal
 .command('qmgr [qmgr...]')
 .option('--status', 'Does amazing things')
+.autocomplete(['cat', 'dog', 'horse', 'caat', 'car'])
 .description('display status of qmgrs')
 .action(function (args, callback) {
     logger.log(args);
@@ -98,6 +99,14 @@ vorpal
             )
         }
       });
+  callback();
+});
+
+vorpal
+.command('time')
+.description('log time')
+.action(function (args, callback) {
+    logger.log(new Date().toString());
   callback();
 });
 
